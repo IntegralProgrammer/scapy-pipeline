@@ -36,6 +36,15 @@ mkfifo netpipe
 cat netpipe | sudo socat -d -d STDIO TUN:192.168.10.1/24,up | python pipe_program_ping_lossy.py > netpipe
 ```
 
+### pipe_program_ping_inverted.py
+
+Generates an ICMP reply for any IPv4 address pinged but with payload bits *inverted*.
+
+```bash
+mkfifo netpipe
+cat netpipe | sudo socat -d -d STDIO TUN:192.168.10.1/24,up | python pipe_program_ping_inverted.py > netpipe
+```
+
 ### Filtering Network Traffic From A Different Network Namespace
 
 Enter a **new** *network namespace* and get a PID within this namespace.
