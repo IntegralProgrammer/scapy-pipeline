@@ -96,3 +96,25 @@ python
 
 The network traffic moving from client to server will be filtered and
 displayed according to the logic defined in `pipe_program_passthrough.py`.
+
+
+### Transporting IPv4 Traffic Over A Covert ICMP Channel
+
+- Install my [ICMPcat](https://github.com/IntegralProgrammer/ICMPcat) utility.
+
+On the server:
+
+```bash
+sudo sysctl net.ipv4.icmp_echo_ignore_all=1
+mkfifo netpipe
+cat netpipe | sudo socat -d -d STDIO TUN:192.168.10.1/24,up | python socat2b64line.py | sudo python icmpcat_server.py | python b64line2socat.py > netpipe
+```
+
+On the client:
+
+```bash
+mkfifo netpipe
+cat netpipe | sudo socat -d -d STDIO TUN:192.168.10.2/24,up | python socat2b64line.py | sudo python icmpcat_client.py <PUBLIC IP OF SERVER> 0.01 | python b64line2socat.py > netpipe
+```
+
+The *client* **192.168.10.2** should now be able to access network services on the *server* **192.168.10.1**.
