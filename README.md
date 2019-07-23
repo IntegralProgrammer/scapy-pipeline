@@ -18,7 +18,7 @@ sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 
 ## Examples
 
-### pipe_program_ping.py
+### pipe_program_ping.py (Use pipe_program_ping3.py for Python 3)
 
 Generates an ICMP reply for any IPv4 address pinged.
 
@@ -27,7 +27,7 @@ mkfifo netpipe
 cat netpipe | sudo socat -d -d STDIO TUN:192.168.10.1/24,up | python pipe_program_ping.py > netpipe
 ```
 
-### pipe_program_ping_lossy.py
+### pipe_program_ping_lossy.py (Use pipe_program_ping_lossy3.py for Python 3)
 
 Same as pipe_program_ping.py but drops *one* in every *five* ICMP packets.
 
@@ -36,7 +36,7 @@ mkfifo netpipe
 cat netpipe | sudo socat -d -d STDIO TUN:192.168.10.1/24,up | python pipe_program_ping_lossy.py > netpipe
 ```
 
-### pipe_program_ping_inverted.py
+### pipe_program_ping_inverted.py (Use pipe_program_ping_inverted3.py for Python 3)
 
 Generates an ICMP reply for any IPv4 address pinged but with payload bits *inverted*.
 
