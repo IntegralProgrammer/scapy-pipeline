@@ -16,6 +16,13 @@ recommended that IPv6 be disabled.
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 ```
 
+## Installation
+
+To use the library locally, simply run any of the below examples in the
+cloned directory. To install this library system-wide, run
+`sudo make install2.7` to install the library for Python 2.7 or
+`sudo make install3` to install the library for Python 3.
+
 ## Examples
 
 ### pipe_program_ping.py (Use pipe_program_ping3.py for Python 3)
